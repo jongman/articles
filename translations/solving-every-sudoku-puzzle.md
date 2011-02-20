@@ -42,6 +42,7 @@
 
 [파이썬](http://python.org/) 을 이용하면 단위와 이웃, 칸들의 관계를 다음과 같이 표현할 수 있다. (이 코드는 파이썬 2.5 이상을 필요로 한다)
 
+```python
 	def cross(A, B):
 		"A 와 B 에 포함된 원소들의 교차곱 (cross product) 을 반환한다."
 		return [a+b for a in A for b in B]
@@ -57,6 +58,7 @@
 				for s in squares)
 	peers = dict((s, set(sum(units[s],[]))-set([s]))
 				for s in squares)
+```
 
 마지막 두 줄은 파이썬에 익숙하지 않은 독자들에게는 이해하기 어려울 수도 있다. 부연 설명하자면, 위 코드의 `dict` 는 사전 (dictionary) 를 나타내는 것으로 파이썬 내부에서는 각 키를 값으로 대응시켜 주는 해시 테이블을 가리키는 용어이다. `dict` 를 생성할 때 각 키와 값은 (키, 값) 쌍의 목록으로 전달되며, 따라서 `dict((s, [...]) for s in squares)` 는 각 칸의 이름 `s` 를 리스트 `[...]` 로 대응시키는 사전을 생성하는 문장이다. 그리고 `[u for u in unitlist if s in u]` 는 `s` 를 포함하는 모든 단위들의 목록을 생성하는 [리스트 축약](http://docs.python.org/tutorial/datastructures.html#list-comprehensions) 문법이다. 따라서 `units` 에 대한 대입문을 한 마디로 설명하자면 다음과 같다: `units` 는 각 칸의 이름을 해당 칸이 포함된 모든 단위들의 목록으로 대응시키는 사전이다. 이와 비슷한 맥락에서, `peers` 는 각 칸의 이름을 해당 칸과 이웃 관계를 갖는 모든 칸들의 목록으로 대응시키는 사전이라고 이해하면 된다.
 
